@@ -35,7 +35,6 @@
 		<style>
 			body {background:#fff;color:#413E4A;border:10px solid #73626E;}
 			.container {width:calc(100%-24px);max-width:600px;margin:0 auto 100px;}
-			@media(max-width:500px){.container{padding:8px;overflow-x:hidden;}pre{max-width:100%;overflow-x:auto;}}
 			.py {padding-top:5%;padding-bottom:5%;}
 			hr {margin:4em auto;border:0;}
 			a {color:#B38184;}
@@ -43,11 +42,17 @@
 			pre {margin:2em auto;padding:12px;background:#F7E4BE;color:#413E4A;font-size:14px;border-radius:6px;}
 			p>code{background:#F7E4BE;border-radius:3px;font-weight:bold;margin-left:-4px;padding:4px;border-radius:3px;color:#413E4A;}
 			p {line-height:1.5;}
+			p span.count {font-size:32px;font-weight:200;display:block;}
 			p+p {margin-top:2em;}
-			footer {padding:10%;text-align:center;background:#73626E;color:#F7E4BE;}
+			.github {position:fixed;top:0;right:0;width:52px;height:52px;background:#73626E;color:#fff;text-align:center;display:flex;justify-content:center;align-items:center;}
+			footer {padding:10%;text-align:center;background:#73626E;color:#F7E4BE;line-height:1.5;}
+			footer a {color:#F7E4BE;text-decoration:none;border-bottom:1px solid #f7e4be;}
+
+			@media(max-width:500px){.container{padding:20px;overflow-x:hidden;}pre{max-width:100%;overflow-x:auto;}p span.count{font-size:24px;line-height:1;margin-bottom:8px;}}
 		</style>
 	</head>
     <body>
+    	<a href="https://github.com/jordanlittle/arcoviddata" class="github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
         <section class="container py">
         	<h1>Arkansas COVID-19 Data API</h1>
         	<p>A JSON API for accessing COVID-19 data on the <a href="https://www.healthy.arkansas.gov/programs-services/topics/novel-coronavirus">Arkansas Department of Health's website</a>.</p>
@@ -59,7 +64,7 @@
 
         	<hr>
 
-        	<h2>Example response</h2>
+        	<h2>Example response (live data)</h2>
         	<pre><code>{
   last_updated: "March 20, 2020, 5:21pm",
   total_confirmed_cases: "100",
@@ -74,16 +79,16 @@
 
 			<hr>
 
-        	<h2>Explanation of keys</h2>
-        	<p><code>last_updated</code><br>The last time the ADH website was updated.</p>
-        	<p><code>total_confirmed_cases</code><br>Confirmed Cases of COVID-19 in Arkansas</p>
-        	<p><code>adh_pos_test_results</code><br>Arkansas Department of Health Lab positive test results</p>
-        	<p><code>comlabs_pos_test_results</code><br>Commercial lab positive test results</p>
-        	<p><code>persons_under_investigation</code><br>Persons Under Investigation (PUI)</p>
-        	<p><code>persons_being_monitored</code><br>Persons being monitored by ADH with daily check-in and guidance because of an identified risk</p>
-        	<p><code>past_puis_with_neg_results</code><br>Past PUIs with negative test results</p>
-        	<p><code>adh_neg_test_results</code><br>Arkansas Department of Health Lab negative test results</p>
-        	<p><code>comlabs_neg_test_results</code><br>Commercial Lab negative test results</p>
+        	<h2>Available fields (live data)</h2>
+        	<p><span class="count">0</span><code>last_updated</code><br>The last time the ADH website was updated.</p>
+        	<p><span class="count">0</span><code>total_confirmed_cases</code><br>Confirmed Cases of COVID-19 in Arkansas</p>
+        	<p><span class="count">0</span><code>adh_pos_test_results</code><br>Arkansas Department of Health Lab positive test results</p>
+        	<p><span class="count">0</span><code>comlabs_pos_test_results</code><br>Commercial lab positive test results</p>
+        	<p><span class="count">0</span><code>persons_under_investigation</code><br>Persons Under Investigation (PUI)</p>
+        	<p><span class="count">0</span><code>persons_being_monitored</code><br>Persons being monitored by ADH with daily check-in and guidance because of an identified risk</p>
+        	<p><span class="count">0</span><code>past_puis_with_neg_results</code><br>Past PUIs with negative test results</p>
+        	<p><span class="count">0</span><code>adh_neg_test_results</code><br>Arkansas Department of Health Lab negative test results</p>
+        	<p><span class="count">0</span><code>comlabs_neg_test_results</code><br>Commercial Lab negative test results</p>
 
         	<hr>
 
@@ -93,6 +98,28 @@
 
         </section>
 
-        <footer>Built by a quarantined Jordan Little</footer>
+        <footer><a href="https://github.com/jordanlittle/arcoviddata">Github</a> <br />Built by a quarantined Jordan Little.</footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script>
+			document.addEventListener('DOMContentLoaded', function(event) { 
+				axios.get('/data')
+					.then(function (response) {
+						$responseData = response.data;
+						Object.keys($responseData).forEach(function(el){
+							var xpath = "//code[text()='"+el+"']";
+							var matchingElement = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+							var counter = matchingElement.previousSibling;
+							counter.textContent = $responseData[el];
+						});
+					})
+					.catch(function (error) {
+						console.log(error);
+					})
+					.then(function () {
+						// always executed
+					});
+			});
+        </script>
     </body>
 </html>
