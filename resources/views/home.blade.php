@@ -40,8 +40,12 @@
 			a {color:#B38184;}
 			a:hover {color:#F0B49E;}
 			pre {margin:2em auto;padding:12px;background:#F7E4BE;color:#413E4A;font-size:14px;border-radius:6px;}
-			p>code{background:#F7E4BE;border-radius:3px;font-weight:bold;margin-left:-4px;padding:4px;border-radius:3px;color:#413E4A;}
+			pre code {min-height:3em;}
+			p>code,li>code{background:#F7E4BE;border-radius:3px;font-weight:bold;padding:4px;border-radius:3px;color:#413E4A;}
+			p>code {margin-left:-4px;}
+			li>code {font-size:90%;}
 			p {line-height:1.5;}
+			ol li {margin-bottom:.5em;line-height:1.35;}
 			p span.count {font-size:32px;font-weight:200;display:block;}
 			p+p {margin-top:2em;}
 			.github {position:fixed;top:0;right:0;width:52px;height:52px;background:#73626E;color:#fff;text-align:center;display:flex;justify-content:center;align-items:center;}
@@ -65,17 +69,20 @@
         	<hr>
 
         	<h2>Example response (live data)</h2>
-        	<pre><code>{
-  last_updated: "March 20, 2020, 5:21pm",
-  total_confirmed_cases: "100",
-  adh_pos_test_results: "62",
-  comlabs_pos_test_results: "38",
-  persons_under_investigation: "176",
-  persons_being_monitored: "494",
-  past_puis_with_neg_results: "441",
-  adh_neg_test_results: "295",
-  comlabs_neg_test_results: "146"
-}</code></pre>
+        	<pre><code></code></pre>
+
+			<hr>
+
+			<h2>Working locally</h2>
+			<p>This project is a glorified web scraper built with <a href="https://github.com/FriendsOfPHP/Goutte">Goutte</a> and <a href="https://lumen.laravel.com/docs/6.x">Laravel Lumen</a>. To work on it locally, you'll need to:</p>
+			<p>
+				<ol>
+					<li>Clone this repo into a fresh directory on a machine with PHP 7.3+.</li>
+					<li>Ensure you have <a href="https://getcomposer.org/">Composer</a> installed.</li>
+					<li>Run <code>composer install</code> from within the directory.</li>
+					<li>Serve (on Mac at least) with <code>php -S localhost:8000</code> from within the directory.</li>
+				</ol>
+			</p>
 
 			<hr>
 
@@ -112,6 +119,7 @@
 							var counter = matchingElement.previousSibling;
 							counter.textContent = $responseData[el];
 						});
+						document.querySelectorAll('pre code')[0].textContent = JSON.stringify(response.data, undefined, 2);
 					})
 					.catch(function (error) {
 						console.log(error);
