@@ -23,12 +23,7 @@ This project is a glorified web scraper built with [Goutte](https://github.com/F
   last_updated: "March 20, 2020, 5:21pm",  
   total_confirmed_cases: "100",  
   adh_pos_test_results: "62",  
-  comlabs_pos_test_results: "38",  
-  persons_under_investigation: "176",  
-  persons_being_monitored: "494",  
-  past_puis_with_neg_results: "441",  
-  adh_neg_test_results: "295",  
-  comlabs_neg_test_results: "146"  
+  comlabs_pos_test_results: "38"
 }
 ```
 
@@ -45,21 +40,6 @@ Arkansas Department of Health Lab positive test results
 
 **comlabs_pos_test_results**  
 Commercial lab positive test results
-
-**persons_under_investigation**  
-Persons Under Investigation (PUI)
-
-**persons_being_monitored**  
-Persons being monitored by ADH with daily check-in and guidance because of an identified risk
-
-**past_puis_with_neg_results**  
-Past PUIs with negative test results
-
-**adh_neg_test_results**  
-Arkansas Department of Health Lab negative test results
-
-**comlabs_neg_test_results**  
-Commercial Lab negative test results
 
 ## Disclaimer
 

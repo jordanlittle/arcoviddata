@@ -40,7 +40,7 @@
 			a {color:#B38184;}
 			a:hover {color:#F0B49E;}
 			pre {margin:2em auto;padding:12px;background:#F7E4BE;color:#413E4A;font-size:14px;border-radius:6px;}
-			pre code {min-height:12.5em;display:block;}
+			pre code {display:block;}
 			p>code,li>code{background:#F7E4BE;border-radius:3px;font-weight:bold;padding:4px;border-radius:3px;color:#413E4A;}
 			p>code {margin-left:-4px;}
 			li>code {font-size:90%;}
