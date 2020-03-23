@@ -40,7 +40,7 @@
 			a {color:#B38184;}
 			a:hover {color:#F0B49E;}
 			pre {margin:2em auto;padding:12px;background:#F7E4BE;color:#413E4A;font-size:14px;border-radius:6px;}
-			pre code {min-height:3em;}
+			pre code {min-height:12.5em;display:block;}
 			p>code,li>code{background:#F7E4BE;border-radius:3px;font-weight:bold;padding:4px;border-radius:3px;color:#413E4A;}
 			p>code {margin-left:-4px;}
 			li>code {font-size:90%;}
@@ -91,11 +91,6 @@
         	<p><span class="count">0</span><code>total_confirmed_cases</code><br>Confirmed Cases of COVID-19 in Arkansas</p>
         	<p><span class="count">0</span><code>adh_pos_test_results</code><br>Arkansas Department of Health Lab positive test results</p>
         	<p><span class="count">0</span><code>comlabs_pos_test_results</code><br>Commercial lab positive test results</p>
-        	<p><span class="count">0</span><code>persons_under_investigation</code><br>Persons Under Investigation (PUI)</p>
-        	<p><span class="count">0</span><code>persons_being_monitored</code><br>Persons being monitored by ADH with daily check-in and guidance because of an identified risk</p>
-        	<p><span class="count">0</span><code>past_puis_with_neg_results</code><br>Past PUIs with negative test results</p>
-        	<p><span class="count">0</span><code>adh_neg_test_results</code><br>Arkansas Department of Health Lab negative test results</p>
-        	<p><span class="count">0</span><code>comlabs_neg_test_results</code><br>Commercial Lab negative test results</p>
 
         	<hr>
 

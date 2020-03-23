@@ -13,12 +13,7 @@ class CovidData extends Controller
         'last_updated' => null,
         'total_confirmed_cases' => null,
         'adh_pos_test_results' => null,
-        'comlabs_pos_test_results' => null,
-        'persons_under_investigation' => null,
-        'persons_being_monitored' => null,
-        'past_puis_with_neg_results' => null,
-        'adh_neg_test_results' => null,
-        'comlabs_neg_test_results' => null
+        'comlabs_pos_test_results' => null
     );
 
     /**
@@ -47,15 +42,6 @@ class CovidData extends Controller
 
         $this->data['comlabs_pos_test_results'] = $crawler->filterXPath('//td[text() = "Commercial lab positive test results"]')->closest('td')->nextAll('td')->text();
 
-        $this->data['persons_under_investigation'] = $crawler->filterXPath('//td/strong[text() = "Persons Under Investigation (PUI)"]')->closest('td')->nextAll('td')->text();
-
-        $this->data['persons_being_monitored'] = $crawler->filterXPath('//td/strong[text() = "Persons being monitored by ADH with daily check-in and guidance because of an identified risk"]')->closest('td')->nextAll('td')->text();
-
-        $this->data['past_puis_with_neg_results'] = $crawler->filterXPath('//td/strong[text() = "Past PUIs with negative test results"]')->closest('td')->nextAll('td')->text();
-
-        $this->data['adh_neg_test_results'] = $crawler->filterXPath('//td[text() = "Arkansas Department of Health Lab negative test results"]')->closest('td')->nextAll('td')->text();
-        $this->data['comlabs_neg_test_results'] = $crawler->filterXPath('//td[text() = "Commercial Lab negative test results"]')->closest('td')->nextAll('td')->text();
-        
         return response()->json($this->data);
     }
 }
