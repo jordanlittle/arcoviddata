@@ -31,8 +31,8 @@ class CovidData extends Controller
         $crawler = $client->request('GET', 'https://www.healthy.arkansas.gov/programs-services/topics/novel-coronavirus');
 
         $crawler->filter('th')->each(function($node){
-            if (strpos($node->text(), 'Status Update as of') !== false) {
-                $this->data['last_updated'] = str_replace('Status Update as of ','',$node->text() );
+            if (strpos($node->text(), 'Updated as of') !== false) {
+                $this->data['last_updated'] = str_replace('Updated as of ','',$node->text() );
             }
         });
 
