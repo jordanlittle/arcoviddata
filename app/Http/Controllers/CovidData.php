@@ -40,7 +40,7 @@ class CovidData extends Controller
 
         $this->data['adh_pos_test_results'] = $crawler->filterXPath('//td[text() = "Arkansas Department of Health Lab positive test results"]')->closest('td')->nextAll('td')->text();
 
-        $this->data['comlabs_pos_test_results'] = $crawler->filterXPath('//td[text() = "Commercial lab positive test results"]')->closest('td')->nextAll('td')->text();
+        $this->data['comlabs_pos_test_results'] = $crawler->filterXPath('//td[text() = "Commercial Lab positive test results"]')->nextAll('td')->text();
 
         return response()->json($this->data);
     }
